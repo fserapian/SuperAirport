@@ -1,0 +1,16 @@
+#upper-footer {
+    background-color: var(--bg-color-primary);
+    color: #000;
+    height: 5rem;
+}
+
+#lower-footer {
+    background-color: var(--bg-color-secondary);
+    color: #fff;
+    height: 4rem;
+    border-bottom: 0.2rem solid var(--bg-color-primary);
+}
+
+span {
+    margin-left: 2rem;
+}

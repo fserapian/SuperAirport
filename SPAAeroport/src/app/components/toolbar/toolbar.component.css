@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css?family=Philosopher:700i&display=swap');
+
+.lang-btn {
+    border: none;
+    background-color: transparent;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+}
+
+.lang-btn:hover {
+    color: var(--bg-color-primary);
+}
+
+#co-logo {
+    font-family: 'Philosopher', sans-serif;
+    font-size: 40px;
+}
+
+.mat-icon {
+    padding-bottom: 5px;
+    transform: rotate(90deg);
+    font-size: 30px;
+    color: var(--color-logo-icon);
+}
+
+#upper-toolbar {
+    height: 3rem;
+    display: flex;
+    justify-content: space-between;
+    background: black;
+    color: #fff;
+    border-top: 0.2rem solid var(--bg-color-primary);
+}
+
+#lower-toolbar {
+    display: flex;
+    justify-content: space-between;
+    color: #000;
+    height: 120px;
+    background: url('../../../assets/img/gray-airliner.jpg') no-repeat center center/cover;
+}
+
+@media (max-width: 780px) {
+    #weather-icon {
+        display: none;
+    }
+}

@@ -1,0 +1,49 @@
+{
+    "Table": {
+        "FlightNo": "Flight No",
+        "Scheduled": "Scheduled",
+        "Revised": "Revised",
+        "Company": "Company",
+        "Origin": "Origin",
+        "Destination": "Destination",
+        "State": "State",
+        "Gate": "Gate",
+        "Follow": "Follow",
+        "Arrived": "Arrived",
+        "Departed": "Departed",
+        "Delayed": "Delayed"
+    },
+    "SearchBar": {
+        "Input": "Search for a flight",
+        "Arrivals": "Arrivals",
+        "Departures": "Departures"
+    },
+    "SideNav": {
+        "Arrivals": "Arrivals",
+        "Departures": "Departues",
+        "Today": "Today",
+        "Tomorrow": "Tomorrow"
+    },
+    "Toolbar": {
+        "Location": "Montreal, QC"
+    },
+    "Dialog": {
+        "Title": "Subscription to flight",
+        "Input": {
+            "Placeholder": "Phone Number",
+            "Required": "Input field is empty",
+            "Pattern": "Phone must be 10 digits"
+        },
+        "Button": "Subscribe",
+        "SnackBar": {
+            "Empty": "Please enter phone number",
+            "Invalid": "Something went wrong",
+            "Dismiss": "Dismiss",
+            "Success": "You have subscribed to flight"
+        }
+    },
+    "Footer": {
+        "Upper": "Created & designed by",
+        "Lower": "All rights reserved"
+    }
+}

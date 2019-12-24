@@ -1,0 +1,50 @@
+{
+    "Table": {
+        "FlightNo": "Nº Vol",
+        "Scheduled": "Prévu",
+        "Revised": "Révisé",
+        "Company": "Compagnie",
+        "Origin": "Provenance",
+        "Destination": "Destination",
+        "State": "État",
+        "Gate": "Porte",
+        "Follow": "Suivre",
+        "Arrived": "Arrivé",
+        "Departed": "Parti",
+        "Delayed": "Retardé"
+    },
+    "SearchBar": {
+        "Input": "Chercher un vol",
+        "Arrivals": "Arrivées",
+        "Departures": "Départs"
+    },
+    "SideNav": {
+        "Arrivals": "Arrivées",
+        "Departures": "Départs",
+        "Today": "Aujourd'hui",
+        "Tomorrow": "Demain"
+    },
+    "Toolbar": {
+        "Location": "Montréal, QC"
+    },
+    "Dialog": {
+        "Title": "Inscription au vol",
+        "Input": {
+            "Placeholder": "Numéro de téléphone",
+            "Required": "Le champ est vide",
+            "Pattern": "Le téléphone doit avoir 10 chiffres"
+        },
+        "Button": "M'inscrire",
+        "SnackBar": {
+            "Empty": "Entrez numéro de téléphone SVP",
+            "Invalid": "Une erreur s'est produite",
+            "Dismiss": "Fermer",
+            "Success": "Vous venez d'inscrire au vol"
+        },
+        "Empty": "Entrez numéro de téléphone SVP"
+    },
+    "Footer": {
+        "Upper": "Création et design",
+        "Lower": "Tous les droits sont réservés"
+    }
+}

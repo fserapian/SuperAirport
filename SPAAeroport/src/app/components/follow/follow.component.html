@@ -1,0 +1,19 @@
+<div class="follow-dialog">
+    <h2 class="dialog-title"> {{ 'Dialog.Title' | translate }} <span class="flightNo" #numVol>{{ data.numVol }}</span>
+    </h2>
+    <form [formGroup]="form" class="phone-form">
+        <input type="text" value="{{data.volCeduleId}}" #volId hidden>
+        <mat-form-field color="warn">
+            <input matInput [placeholder]="'Dialog.Input.Placeholder' | translate" formControlName="numTel">
+            <mat-hint>Ex: 1234567890</mat-hint>
+            <mat-error *ngIf="form.controls['numTel'].errors?.required">{{ 'Dialog.Input.Required' | translate }}
+            </mat-error>
+            <mat-error *ngIf="form.controls['numTel'].errors?.pattern">{{ 'Dialog.Input.Pattern' | translate }}
+            </mat-error>
+        </mat-form-field>
+        <button class="subs-btn" mat-raised-button
+            (click)="addNotification(volId.value, form.controls['numTel'].value, numVol)"
+            [disabled]="form.invalid">{{ 'Dialog.Button' | translate }}</button>
+    </form>
+
+</div>

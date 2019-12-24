@@ -1,0 +1,183 @@
+<mat-sidenav-container>
+
+    <!-- Sidnav -->
+    <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+        <button mat-raised-button (click)="onClickArrivals()">{{ 'SideNav.Arrivals' | translate }}</button>
+        <button mat-raised-button (click)="onClickDepartures()">{{ 'SideNav.Departures' | translate }}</button>
+        <hr>
+        <button mat-raised-button class="today-btn"
+            (click)="sortByDate('datePrevue', 'asc')">{{ 'SideNav.Today' | translate }}</button>
+        <button mat-raised-button class="tomorrow-btn"
+            (click)="sortByDate('datePrevue', 'desc')">{{ 'SideNav.Tomorrow' | translate }}</button>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+
+        <!-- Search Bar -->
+        <mat-toolbar id="searchBar">
+            <div class="search-box" (keyup)="applyFilter($event.target.value)">
+                <input class="search-input" type="text" [placeholder]="'SearchBar.Input' | translate">
+                <mat-icon class="search-icon">search</mat-icon>
+            </div>
+            <div class="title-info" *ngIf="arrivalsShow">
+                <span>{{ 'SearchBar.Arrivals' | translate }}</span>
+                <mat-icon class="flight-icon">flight_land</mat-icon>
+            </div>
+            <div class="title-info" *ngIf="!arrivalsShow">
+                <span>{{ 'SearchBar.Departures' | translate }}</span>
+                <mat-icon class="flight-icon">flight_takeoff</mat-icon>
+            </div>
+        </mat-toolbar>
+
+        <!-- Responsive design buttons -->
+        <mat-toolbar class="buttons-toolbar">
+            <button mat-raised-button (click)="onClickArrivals()"
+                class="arr-btn-rd">{{ 'SearchBar.Arrivals' | translate }}</button>
+            <button mat-raised-button (click)="onClickDepartures()"
+                class="dep-btn-rd">{{ 'SearchBar.Departures' | translate }}</button>
+            <span class="seperator"> | </span>
+            <button mat-raised-button (click)="sortByDate('datePrevue', 'asc')"
+                class="today-btn-rd">{{ 'SideNav.Today' | translate }}</button>
+            <button mat-raised-button (click)="sortByDate('datePrevue', 'desc')"
+                class="tomorrow-btn-rd">{{ 'SideNav.Tomorrow' | translate }}</button>
+        </mat-toolbar>
+
+        <!-- Arrivals Table -->
+        <table [hidden]="!arrivalsShow" mat-table [dataSource]="arrivalsTableData" class="mat-elevation-z8"
+            #arrivalsTableSort="matSort" matSort>
+
+            <!-- FlightNo Column -->
+            <ng-container matColumnDef="numVol">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Table.FlightNo' | translate }} </th>
+                <td mat-cell *matCellDef="let flight"> {{ flight.numVol }} </td>
+            </ng-container>
+
+            <!-- Scheduled Time Column -->
+            <ng-container matColumnDef="heurePrevue">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Table.Scheduled' | translate }} </th>
+                <td mat-cell *matCellDef="let flight"> {{ flight.heurePrevue }}
+                    <small>({{ flight.datePrevue | date:'MMM. dd' }})</small>
+                </td>
+            </ng-container>
+
+            <!-- Scheduled Day Column -->
+            <ng-container matColumnDef="datePrevue">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Table.Scheduled' | translate }} </th>
+                <td mat-cell *matCellDef="let flight">
+                    {{ flight.heurePrevue }}
+                    <small>({{ flight.datePrevue | date:'MMM. dd' }})</small>
+                </td>
+            </ng-container>
+
+            <!-- Revised Column -->
+            <ng-container matColumnDef="heureRevisee">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Table.Revised' | translate }} </th>
+                <td mat-cell *matCellDef="let flight"> {{ flight.heureRevisee }}
+                    <small *ngIf="flight.heureRevisee != '-'">({{ flight.datePrevue | date:'MMM. dd' }})</small>
+                </td>
+            </ng-container>
+
+            <!-- Flight Column -->
+            <ng-container matColumnDef="compLogo">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Table.Company' | translate }} </th>
+                <td mat-cell *matCellDef="let flight"> <img src="../assets/img/{{flight.compLogo}}"
+                        style="height: 25px;" alt="Photo"></td>
+            </ng-container>
+
+            <!-- Origin Column -->
+            <ng-container matColumnDef="provenance">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Table.Origin' | translate }} </th>
+                <td mat-cell *matCellDef="let flight"> {{ flight.provenance }} </td>
+            </ng-container>
+
+            <!-- State Column -->
+            <ng-container matColumnDef="statut">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Table.State' | translate }} </th>
+                <td mat-cell *matCellDef="let flight">
+                    {{ flight.statut === 0 ? ('Table.Arrived' | translate) : ('Table.Delayed' | translate) }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="suivre">
+                <th mat-header-cell *matHeaderCellDef> {{ 'Table.Follow' | translate }} </th>
+                <td mat-cell *matCellDef="let flight"><button class="follow-btn" (click)="openDialog(flight)">
+                        <mat-icon>sms</mat-icon>
+                    </button></td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="getDisplayedColumns1()"></tr>
+            <tr mat-row *matRowDef="let row; columns: getDisplayedColumns1();"></tr>
+        </table>
+
+        <!-- Departues Table -->
+        <table [hidden]="arrivalsShow" mat-table [dataSource]="departuresTableData" class="mat-elevation-z8"
+            #departuresTableSort="matSort" matSort>
+
+            <!-- FlightNo Column -->
+            <ng-container matColumnDef="numVol">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Table.FlightNo' | translate }} </th>
+                <td mat-cell *matCellDef="let flight"> {{ flight.numVol }} </td>
+            </ng-container>
+
+            <!-- Scheduled Time Column -->
+            <ng-container matColumnDef="heurePrevue">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Table.Scheduled' | translate }} </th>
+                <td mat-cell *matCellDef="let flight"> {{ flight.heurePrevue }}
+                    <small>({{ flight.datePrevue | date:'MMM. dd' }})</small>
+                </td>
+            </ng-container>
+
+            <!-- Scheduled Day Column -->
+            <ng-container matColumnDef="datePrevue">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Table.Scheduled' | translate }} </th>
+                <td mat-cell *matCellDef="let flight"> {{ flight.datePrevue }} </td>
+            </ng-container>
+
+            <!-- Revised Column -->
+            <ng-container matColumnDef="heureRevisee">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Table.Revised' | translate }} </th>
+                <td mat-cell *matCellDef="let flight"> {{ flight.heureRevisee }}
+                    <small *ngIf="flight.heureRevisee != '-'">({{ flight.datePrevue | date:'MMM. dd' }})</small>
+                </td>
+            </ng-container>
+
+            <!-- Flight Column -->
+            <ng-container matColumnDef="compLogo">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Table.Company' | translate }} </th>
+                <td mat-cell *matCellDef="let flight"> <img src="../assets/img/{{flight.compLogo}}"
+                        style="height: 25px;" alt="Photo"></td>
+            </ng-container>
+
+            <!-- Origin Column -->
+            <ng-container matColumnDef="destination">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Table.Destination' | translate }} </th>
+                <td mat-cell *matCellDef="let flight"> {{ flight.destination }} </td>
+            </ng-container>
+
+            <!-- State Column -->
+            <ng-container matColumnDef="statut">
+                <th mat-header-cell *matHeaderCellDef> {{ 'Table.State' | translate }} </th>
+                <td mat-cell *matCellDef="let flight">
+                    {{ flight.statut === 0 ? ('Table.Departed' | translate) : ('Table.Delayed' | translate) }} </td>
+            </ng-container>
+
+            <!-- Gate Column -->
+            <ng-container matColumnDef="porte">
+                <th mat-header-cell *matHeaderCellDef> {{ 'Table.Gate' | translate }} </th>
+                <td mat-cell *matCellDef="let flight"> {{ flight.porte }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="suivre">
+                <th mat-header-cell *matHeaderCellDef> {{ 'Table.Follow' | translate }} </th>
+                <td mat-cell *matCellDef="let flight">
+                    <button class="follow-btn" (click)="openDialog(flight)">
+                        <mat-icon>sms</mat-icon>
+                    </button></td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="getDisplayedColumns2()"></tr>
+            <tr mat-row *matRowDef="let row; columns: getDisplayedColumns2();"></tr>
+        </table>
+
+    </mat-sidenav-content>
+
+</mat-sidenav-container>

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29609.76
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIAeroport", "APIAeroport.csproj", "{43C71FEF-44F2-4688-8953-C7D06FC36622}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{43C71FEF-44F2-4688-8953-C7D06FC36622}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43C71FEF-44F2-4688-8953-C7D06FC36622}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43C71FEF-44F2-4688-8953-C7D06FC36622}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43C71FEF-44F2-4688-8953-C7D06FC36622}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EA713325-D68C-4042-AE99-95FE574C9416}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,25 @@
+<!-- Upper toolbar -->
+<mat-toolbar id="upper-toolbar">
+    <!-- <span *ngIf="weather">
+        {{ 'Toolbar.Location' | translate }} &nbsp;&nbsp;&nbsp;
+        {{ toCelsius(weather.currently.temperature) + '°C' }}
+    </span> -->
+    <span>30 °F (should come from darksky api, refer to the code)</span>
+    <!-- Remove this span and uncomment the one above, provide your darksky api key in weather.service.ts -->
+    <button class="lang-btn" (click)="switchLanguage()">{{ lang }}</button>
+</mat-toolbar>
+
+<!-- Lower toolbar -->
+<mat-toolbar id="lower-toolbar">
+    <div id="co-logo">
+        SuperAirport
+        <mat-icon>airplanemode_active</mat-icon>
+    </div>
+
+    <!-- <span id="weather-icon" *ngIf="weather">
+        <span>{{ weather.minutely.summary }}</span>
+        <sc-skycons [weather]="weather.currently.icon" [color]="'black'"></sc-skycons>
+    </span> -->
+    <span id="weather-icon">Skycon (should come from darksky api, refer to the code)</span>
+    <!-- Remove this span and uncomment the one above, provide your darksky api key in weather.service.ts -->
+</mat-toolbar>

@@ -1,0 +1,43 @@
+.dialog-title {
+    margin-bottom: 2rem;
+}
+
+.follow-dialog {
+    padding: 0 3rem;
+    padding-bottom: 2rem;
+}
+
+.subs-btn {
+    background: var(--bg-color-primary);
+    color: #000;
+    margin-left: 2rem;
+}
+
+.flightNo {
+    color: var(--bg-color-primary);
+}
+
+::ng-deep .snackbar-danger {
+    background-color: #f44336;
+    color: #fff;
+}
+
+::ng-deep .snackbar-success {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+/* Change color of label */
+::ng-deep .mat-focused .mat-form-field-label {
+    color: var(--bg-color-primary) !important;
+}
+  
+ /* Change color of underline */
+::ng-deep .mat-form-field-underline {
+    background-color: var(--bg-color-primary) !important;
+}
+  
+/* Change color of underline when focused */
+::ng-deep .mat-form-field-ripple {
+   background-color: var(--bg-color-primary) !important;;
+}
